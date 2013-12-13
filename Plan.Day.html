@@ -1,0 +1,224 @@
+<html>
+<head>
+<title>Plan.Do team strategy day</title>
+</head>
+<style type="text/css">
+
+body
+{
+	font-family: sans-serif;
+	background-color: rgb(236, 237, 238);
+}
+
+#logo
+{
+	height: 80px;
+	overflow: hidden;
+}
+
+#container
+{
+	margin-top: 100px;
+	margin-left: 20%;
+}
+
+ul
+{
+	height: 0%;
+	clear: both;
+	width: 50%;
+	background-color: #ffdd00;
+	color: white;
+	padding-left: 5%;
+	padding-right: 5%;
+	overflow: hidden;
+	list-style: none;
+	transition: 1.5s;
+}
+
+li
+{
+	color: rgb(83, 82, 73);
+}
+
+.showMe
+{
+	height: 35%;
+}
+
+.facil
+{
+	font-style: italic;
+}
+
+button
+{
+	background-color: #ff8000;
+	color: white;
+	border-style: none;
+	height: 40px;
+	width: 100px;
+	margin-top: 5%;
+
+}
+</style>
+
+
+<body>
+<div id="logo">
+<img id="logo-plan" src="plan-dot.svg" alt="Plan.Do">
+<img id="logo-day" src="day.svg" alt="Plan.Do">
+<img id="logo-do" src="do.svg" alt="Plan.Do">
+</div>
+
+
+<div id="container">
+
+<button id="Start">Start</button>
+
+<ul id="sec0">
+<h2>Introduction</h2>
+<li>You're invited to the Plan.Do team away day.</li>
+<li>We'll have a full schedule of activities planned and hope to end the day with a shared vision and set of priorities for 2014.</li>
+<button onclick="viewSection('sec1');">Next</button>
+</ul>
+
+<ul id="sec1">
+<h2>10am - 10.30am: Vision</h2>
+<li>What is the big vision for Plan.Do?</li>
+<li>We'll use the "branding butterfly" to identify our place in the world</li>
+<li class="facil">Facilitator: Louise</li>
+<button onclick="viewSection('sec2');">Next</button>
+</ul>
+
+<ul id="sec2">
+<h2>10.30am - 11.30am: Stakeholders</h2>
+<li>Who are the priority people/organisations? Stakeholder map</li>
+<li>What is the package that we are offering?</li>
+<li class="facil">Facilitator: Louise</li>
+<button onclick="viewSection('sec3');">Next</button>
+</ul>
+
+<ul id="sec3">
+<h2>11.30am - 12.30pm: Strategy</h2>
+<li>How are we going to get there?</li>
+<li>What routes will we try to get to our big vision?</li>
+<li class="facil">Facilitator: Stuart Thomason, Young Foundation</li>
+<button onclick="viewSection('sec4');">Next</button>
+</ul>
+
+<ul id="sec4">
+<h2>12.30pm - 1pm: Lunch</h2>
+<li>Place your sandwich and coffee orders in advance.</li>
+<li class="facil">Facilitator: Daniel</li>
+<button onclick="viewSection('sec5');">Next</button>
+</ul>
+
+<ul id="sec5">
+<h2>1pm - 2pm: Funding Requirements</h2>
+<li>How much capital do we need to take this strategy?</li>
+<li>Use the fun-gamified online spreadsheet</li>
+<li class="facil">Facilitator: Daniel</li>
+<button onclick="viewSection('sec6');">Next</button>
+</ul>
+
+<ul id="sec6">
+<h2>2pm - 3pm: Sources of funding</h2>
+<li>How will we get grants, equity or debt to meet our funding requirements?</li>
+<li>Who should we target?</li>
+<li class="facil">Facilitator: Daniel</li>
+<button onclick="viewSection('sec7');">Next</button>
+</ul>
+
+<ul id="sec7">
+<h2>3pm - 4pm: Impact</h2>
+<li>How will we measure and articulate the impact that we have?</li>
+<li>How will we know if we've achieved our big vision?</li>
+<li class="facil">Facilitator: Kieron Kirkland, Nominet Trust</li>
+<button onclick="viewSection('sec8');">Next</button>
+</ul>
+
+<ul id="sec8">
+<h2>4pm - 5pm: Data</h2>
+<li>How can we use data to help us achieve the big vision?</li>
+<li>What other data sources do we use? What do we collect? How do we share?</li>
+<li class="facil">Facilitator: Daniel</li>
+<button onclick="viewSection('sec9');">Next</button>
+</ul>
+
+<ul id="sec9">
+<h2>6pm - late: Christmas Party</h2>
+<li>Then we celebrate with the rest of the Pear Tree Street office at the Christmas party.</li>
+<li>Electricity Showrooms, 39a Hoxton Square, London N1 6NN</li>
+<li class="facil">Facilitator: alcohol</li>
+</ul>
+</div>
+
+<script type="text/javascript">
+
+window.onload = function() {
+	var logo_plan = document.getElementById("logo-plan");
+	var logo_do = document.getElementById("logo-do");
+	var logo_day = document.getElementById("logo-day");
+
+	logo_plan.style.position="absolute";
+
+	var planPos = 100;
+	var dayPos = -100;
+
+	logo_plan.style.left = 300;
+	logo_plan.style.top = planPos;
+
+
+	var doPos = (logo_plan.getBoundingClientRect().left + logo_plan.offsetWidth);
+
+
+	logo_day.style.position="absolute";
+	logo_do.style.position="absolute";
+
+	logo_day.style.position="absolute";
+
+	logo_day.style.left=(logo_plan.getBoundingClientRect().left + logo_plan.offsetWidth) + "px";
+	logo_do.style.left= doPos + "px";
+
+	logo_day.style.top=dayPos + "px";
+	logo_do.style.top=logo_plan.getBoundingClientRect().top + "px";
+
+
+	function animate(){
+
+		setTimeout(
+				function(){
+					dayPos += 5;
+					doPos +=20;
+					logo_day.style.top = dayPos + "px";
+					logo_do.style.left = doPos + "px";
+					if (planPos > dayPos){
+						animate();
+					}
+					else
+					{
+						setTimeout(viewSection('sec0'),2000);
+					}
+				},50);
+	};
+	
+	document.getElementById("Start").onclick = animate;
+	
+};
+
+function viewSection(name){
+	var next = document.getElementById(name);
+	next.className = "showMe";
+	next.scrollTop = next.scrollHeight;
+	window.location = "#" + name;
+}
+</script>
+
+
+</body>
+
+
+
+
+</html>
